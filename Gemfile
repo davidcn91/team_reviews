@@ -5,6 +5,9 @@ gem 'pg', '~> 0.18'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
+gem 'devise'
+gem 'foundation-rails'
+
 group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
@@ -13,6 +16,8 @@ group :development, :test do
   gem 'shoulda'
   gem 'valid_attribute'
   gem 'listen', '~> 3.0.5'
+  gem 'launchy'
+  gem 'shoulda-matchers', require: false
 end
 
 group :test do
