@@ -9,14 +9,12 @@ gem 'devise'
 gem 'foundation-rails'
 
 group :development, :test do
-  gem 'capybara'
-  gem 'factory_girl_rails'
-  gem 'rspec-rails', '~> 3.0'
   gem 'pry-rails'
-  gem 'shoulda'
-  gem 'valid_attribute'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'capybara'
   gem 'listen', '~> 3.0.5'
-  gem 'launchy'
+  gem 'valid_attribute'
   gem 'shoulda-matchers', require: false
 end
 
