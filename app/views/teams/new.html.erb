@@ -1,0 +1,8 @@
+<h1>New Team</h1>
+<% if flash[:alert] %>
+    <div class="alert"><%= flash[:alert] %></div>
+<% end %>
+
+<%= render 'form', team: @team %>
+
+<p><%= link_to 'Back', teams_path %></p>

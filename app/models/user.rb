@@ -7,4 +7,7 @@ class User < ApplicationRecord
   validates_confirmation_of :password
   validates :first_name, :last_name, presence: true
 
+  def admin?
+    role == "admin"
+  end
 end

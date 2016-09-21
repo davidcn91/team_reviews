@@ -1,1 +1,12 @@
 <h1>Home</h1>
+
+<h3>Teams</h3>
+<ul>
+  <% @teams.each do |team| %>
+    <li><%= link_to "#{team.location} #{team.name} (#{team.league})", team_path(team.id) %></li>
+  <% end %>
+</ul>
+
+<% if user_signed_in? %>
+  <p><%= link_to 'Add New Team', new_team_path %></p>
+<% end %>

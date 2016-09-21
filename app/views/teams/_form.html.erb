@@ -1,0 +1,22 @@
+<%= form_for(team) do |f| %>
+
+  <div class="row">
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+  </div>
+
+  <div class="row">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="row">
+    <%= f.label :league %>
+    <%= f.select :league, @league_collection %>
+  </div>
+
+  <div class="action">
+    <%= f.submit "Submit Team" %>
+  </div>
+
+<% end %>
