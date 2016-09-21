@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 feature 'user edits account' , %Q{
   As an authenticated user
@@ -10,7 +9,7 @@ feature 'user edits account' , %Q{
   # ACCEPTANCE CRITERIA
   # * If I am signed in, I should be able to navigate to an edit profile page
   # * I should be able to update my email, password, first name, and last name.
-  # * If I am not signed in, i should not be able to access an edit profile page.
+  # * If I am not signed in, I should not be able to access an edit profile page.
 
   scenario 'specifying valid and required information' do
     user = FactoryGirl.create(:user)
