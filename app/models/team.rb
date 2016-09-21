@@ -4,4 +4,5 @@ class Team < ActiveRecord::Base
   validates :league, inclusion: { in: LEAGUES }
 
   belongs_to :user
+  has_many :reviews, dependent: :destroy
 end
