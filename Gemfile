@@ -7,6 +7,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'devise'
 gem 'foundation-rails'
+gem 'selenium-webdriver'
 
 group :development, :test do
   gem 'pry-rails'

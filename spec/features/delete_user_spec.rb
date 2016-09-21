@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'pry'
+Capybara.default_driver = :selenium
 
 feature 'user edits account' , %Q{
   As an authenticated user
@@ -12,21 +13,30 @@ feature 'user edits account' , %Q{
   # * If I am not signed in, I should not be able to delete my account.
 
   scenario 'signed in' do
-    user = FactoryGirl.create(:user)
     visit root_path
-    click_link 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Sign In'
+    click_link 'Sign Up'
+    fill_in 'First Name', with: 'Matt'
+    fill_in 'Last Name', with: 'Ryan'
+    fill_in 'Email', with: 'user@example.com'
+    fill_in 'user_password', with: 'password'
+    fill_in 'Password Confirmation', with: 'password'
+    click_button 'Sign Up'
 
     click_link 'Edit Profile'
     click_button 'Cancel my account'
-    page.driver.accept_js_confirms
-    expect(user).to_not be_a(:user)
+    page.accept_alert
+
+    click_link 'Sign In'
+    fill_in 'Email', with: 'user@example.com'
+    fill_in 'user_password', with: 'password'
+    click_button 'Sign In'
+    expect(page).to have_content('Invalid Email or password.')
+    expect(page).to_not have_content('Welcome Back!')
+    expect(page).to_not have_content('Sign Out')
   end
 
   scenario 'not signed in' do
+    visit root_path
     expect(page).to_not have_content("Edit Profile")
   end
-
 end

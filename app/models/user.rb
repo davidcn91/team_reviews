@@ -5,5 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates_confirmation_of :password
+  validates :first_name, :last_name, presence: true
 
 end
