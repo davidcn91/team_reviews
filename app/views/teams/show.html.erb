@@ -1,3 +1,10 @@
 <h1><%= "#{@team.location} #{@team.name} (#{@team.league})" %></h1>
 
+<% if user_signed_in? && current_user.id == @team.user_id %>
+  <%= link_to 'Edit Team', edit_team_path(@team.id) %>
+  <%= button_to 'Delete Team', @team, method: :delete %>
+<% end %>
+
 <h3>Reviews</h3>
+
+<%= link_to 'Back', teams_path %>

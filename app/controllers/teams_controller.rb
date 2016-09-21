@@ -17,6 +17,7 @@ class TeamsController < ApplicationController
       flash[:notice] = "You must be signed in to add a team."
       render :new
     else
+      @team.user_id = current_user.id
       if @team.save
         flash[:notice] = "Team added successfully!"
         redirect_to teams_path
@@ -29,6 +30,40 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+  end
+
+  def edit
+    @team = Team.find(params[:id])
+    @league_collection = Team::LEAGUES
+  end
+
+  def update
+    @team = Team.find(params[:id])
+    @league_collection = Team::LEAGUES
+    if !user_signed_in?
+      flash[:notice] = "You must be signed in to update a team."
+      redirect_to edit_team_path(@team.id)
+    elsif current_user.id != @team.user_id
+      flash[:notice] = "You must be the creator of a team to update it."
+      redirect_to edit_team_path(@team.id)
+    else
+      @team.update(team_params)
+      if @team.save
+        flash[:notice] = "Team updated successfully!"
+        redirect_to team_path(@team.id)
+      else
+        flash[:notice] = "Please fill out all fields."
+        redirect_to edit_team_path(@team.id)
+      end
+    end
+  end
+
+  def destroy
+    team = Team.find(params[:id])
+    if user_signed_in? && (current_user.id == team.user_id)
+      team.destroy
+    end
+    redirect_to teams_path
   end
 
   protected
