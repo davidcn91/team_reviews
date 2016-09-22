@@ -1,0 +1,12 @@
+<%= form_for [team, review] do |f| %>
+
+  <div class="row">
+    <%= f.label :body %>
+    <%= f.text_area(:body, cols: 40, rows: 5) %>
+  </div>
+
+  <div class="action">
+    <%= f.submit "Submit Review" %>
+  </div>
+
+<% end %>

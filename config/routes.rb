@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :teams
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :teams do
+    resources :reviews
+  end
 
   root 'teams#index'
 end

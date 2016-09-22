@@ -7,4 +7,13 @@
 
 <h3>Reviews</h3>
 
-<%= link_to 'Back', teams_path %>
+<ul>
+  <% @reviews.each do |review| %>
+    <li><%= review.body %></li>
+  <% end %>
+</ul>
+
+<% if user_signed_in? %>
+  <p><%= link_to 'Add Review', new_team_review_path(@team.id) %></p>
+<% end %>
+<p><%= link_to 'Back', teams_path %></p>

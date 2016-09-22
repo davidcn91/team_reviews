@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'sign up' , %Q{
+feature 'user signs up' , %Q{
   As a prospective user
   I want to create an account
   So that I can post items and review them
