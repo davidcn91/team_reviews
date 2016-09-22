@@ -13,15 +13,18 @@ feature 'user updates team', %Q{
   #   and I should be provided an error message.
   # * If I am not the creator of the team, I should not be able to update the Team.
 
+  before(:each) do
+    @user = FactoryGirl.create(:user)
+    @team = FactoryGirl.create(:team, user_id: @user.id)
+  end
+
   scenario 'creator supplies valid information' do
-    user = FactoryGirl.create(:user)
-    team = FactoryGirl.create(:team, user_id: user.id)
     visit root_path
     click_link 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
+    fill_in 'Email', with: @user.email
+    fill_in 'Password', with: @user.password
     click_button 'Sign In'
-    click_link "#{team.location} #{team.name} (#{team.league})"
+    click_link "#{@team.location} #{@team.name} (#{@team.league})"
 
     click_link "Edit Team"
     fill_in 'Location', with: 'Seattle'
@@ -36,14 +39,12 @@ feature 'user updates team', %Q{
   end
 
   scenario 'creator supplies invalid information' do
-    user = FactoryGirl.create(:user)
-    team = FactoryGirl.create(:team, user_id: user.id)
     visit root_path
     click_link 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
+    fill_in 'Email', with: @user.email
+    fill_in 'Password', with: @user.password
     click_button 'Sign In'
-    click_link "#{team.location} #{team.name} (#{team.league})"
+    click_link "#{@team.location} #{@team.name} (#{@team.league})"
 
     click_link "Edit Team"
     fill_in 'Location', with: 'Seattle'
@@ -56,14 +57,12 @@ feature 'user updates team', %Q{
   end
 
   scenario 'user is not signed in' do
-    user = FactoryGirl.create(:user)
-    team = FactoryGirl.create(:team, user_id: user.id)
     visit root_path
-    click_link "#{team.location} #{team.name} (#{team.league})"
+    click_link "#{@team.location} #{@team.name} (#{@team.league})"
 
     expect(page).to_not have_content("Edit Team")
 
-    visit edit_team_path(team.id)
+    visit edit_team_path(@team.id)
     fill_in 'Location', with: 'Seattle'
     fill_in 'Name', with: 'Seahawks'
     select 'NFL', from: 'League'
@@ -74,19 +73,17 @@ feature 'user updates team', %Q{
   end
 
   scenario 'authenticated user is not the creator of the team' do
-    user_1 = FactoryGirl.create(:user)
     user_2 = FactoryGirl.create(:user)
-    team = FactoryGirl.create(:team, user_id: user_1.id)
     visit root_path
     click_link 'Sign In'
     fill_in 'Email', with: user_2.email
     fill_in 'Password', with: user_2.password
     click_button 'Sign In'
-    click_link "#{team.location} #{team.name} (#{team.league})"
+    click_link "#{@team.location} #{@team.name} (#{@team.league})"
 
     expect(page).to_not have_content("Edit Team")
 
-    visit edit_team_path(team.id)
+    visit edit_team_path(@team.id)
     fill_in 'Location', with: 'Seattle'
     fill_in 'Name', with: 'Seahawks'
     select 'NFL', from: 'League'

@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :review do
-    body 'This team is awesome.  They play in the Georgia Dome in Atlanta.'
+    sequence(:body) { |n| "This team is awesome.  They play in the Georgia Dome in Atlanta.#{n}" }
   end
 end

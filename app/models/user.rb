@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   validates_confirmation_of :password
   validates :first_name, :last_name, presence: true
+  validates :email, uniqueness: true
 
   has_many :teams
   has_many :reviews

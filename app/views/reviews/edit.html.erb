@@ -1,0 +1,8 @@
+<h1>Edit Review</h1>
+<% if flash[:alert] %>
+  <div class="alert"><%= flash[:alert] %></div>
+<% end %>
+
+<%= render 'form', team: @team, review: @review %>
+
+<p><%= link_to 'Back', team_path(@team.id) %></p>

@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 feature 'user views teams', %Q{
-  As an authenticated user
+  As a user
   I want to view a list of items
   So that I can pick items to review
 
-  As an authenticated user
+  As a user
   I want to view the details about an item
   So that I can get more information about it
 } do
