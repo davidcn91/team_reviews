@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :teams do
     resources :reviews
   end
+  resources :users
 
   root 'teams#index'
 end

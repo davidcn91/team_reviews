@@ -1,6 +1,6 @@
 <h1><%= "#{@team.location} #{@team.name} (#{@team.league})" %></h1>
 
-<% if user_signed_in? && current_user.id == @team.user_id %>
+<% if (user_signed_in? && current_user.id == @team.user_id) || (user_signed_in? && current_user.admin?) %>
   <ul>
     <li><p><%= link_to 'Edit Team', edit_team_path(@team.id) %></p></li>
     <li><%= button_to 'Delete Team', @team, method: :delete %></li>
@@ -16,7 +16,7 @@
       <% if !review.rating.nil? %>
         <br />Team Rating: <%= review.rating %>
       <% end %>
-      <% if user_signed_in? && review.user_id == current_user.id %>
+      <% if (user_signed_in? && review.user_id == current_user.id) || (user_signed_in? && current_user.admin?) %>
         <br /><%= link_to('Edit Review', edit_team_review_path(@team.id, review.id)) %>
         <%= button_to('Delete Review', [@team, review], method: :delete) %>
       <% end %>

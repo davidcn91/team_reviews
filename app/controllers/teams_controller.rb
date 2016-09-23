@@ -61,9 +61,9 @@ class TeamsController < ApplicationController
 
   def destroy
     @team = Team.find(params[:id])
-    if user_signed_in? && (current_user.id == @team.user_id)
-      @team.destroy
-    end
+    authorize_user(@team)
+    @team.destroy
+    flash[:notice] = "Team deleted successfully."
     redirect_to teams_path
   end
 
@@ -76,8 +76,8 @@ class TeamsController < ApplicationController
     )
   end
 
-  def authorize_user
-    if !user_signed_in? || !current_user.admin?
+  def authorize_user(team)
+    if !user_signed_in? || (!current_user.admin? && (current_user.id != team.user_id))
       raise ActionController::RoutingError.new("Not Found")
     end
   end

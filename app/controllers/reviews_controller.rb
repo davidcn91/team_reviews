@@ -47,7 +47,6 @@ class ReviewsController < ApplicationController
       @review.update(vote: @review.vote -= 1)
       redirect_to team_path(@team.id) and return
     end
-    binding.pry
     if !user_signed_in?
       flash[:notice] = "You must be signed in to update a review."
       redirect_to team_path(@team.id)
@@ -67,13 +66,11 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     @team = Team.find(params[:team_id])
     @review = Review.find(params[:id])
-    if user_signed_in? && (current_user.id == @review.user_id)
-      @review.destroy
-      flash[:notice] = "Review deleted successfully."
-    end
+    authorize_user(@review)
+    @review.destroy
+    flash[:notice] = "Review deleted successfully."
     redirect_to team_path(@team.id)
   end
 
@@ -87,8 +84,8 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(:body, :rating, :vote)
   end
 
-  def authorize_user
-    if !user_signed_in? || !current_user.admin?
+  def authorize_user(review)
+    if !user_signed_in? || (!current_user.admin? && (current_user.id != review.user_id))
       raise ActionController::RoutingError.new("Not Found")
     end
   end

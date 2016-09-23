@@ -10,3 +10,7 @@
 <% if user_signed_in? %>
   <p><%= link_to 'Add New Team', new_team_path %></p>
 <% end %>
+
+<% if user_signed_in? && current_user.admin? %>
+  <p><%= link_to 'View Users', users_path %></p>
+<% end %>
