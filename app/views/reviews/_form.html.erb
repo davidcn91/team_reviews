@@ -5,6 +5,11 @@
     <%= f.text_area(:body, cols: 40, rows: 5) %>
   </div>
 
+  <div class="row">
+    <%= f.label :rating, 'Rate Team (1-10)' %>
+    <%= f.select :rating, @rating_collection %>
+  </div>
+
   <div class="action">
     <%= f.submit "Submit Review" %>
   </div>

@@ -30,6 +30,7 @@ feature 'user deletes review', %Q{
     expect(page).to have_content("Review deleted successfully.")
     expect(page).to have_content("Reviews")
     expect(page).to_not have_content(@review.body)
+    expect(page).to_not have_content(@review.rating)
   end
 
   scenario 'user is not signed in' do

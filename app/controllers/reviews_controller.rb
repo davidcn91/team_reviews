@@ -7,11 +7,13 @@ class ReviewsController < ApplicationController
   def new
     @team = Team.find(params[:team_id])
     @review = Review.new
+    @rating_collection = Review::RATINGS
   end
 
   def create
     @team = Team.find(params[:team_id])
     @review = Review.new(review_params)
+    @rating_collection = Review::RATINGS
     if !user_signed_in?
       flash[:notice] = "You must be signed in to add a review."
       render :new
@@ -31,11 +33,13 @@ class ReviewsController < ApplicationController
   def edit
     @team = Team.find(params[:team_id])
     @review = Review.find(params[:id])
+    @rating_collection = Review::RATINGS
   end
 
   def update
     @team = Team.find(params[:team_id])
     @review = Review.find(params[:id])
+    @rating_collection = Review::RATINGS
     if !user_signed_in?
       flash[:notice] = "You must be signed in to update a review."
       redirect_to team_path(@team.id)
@@ -67,7 +71,13 @@ class ReviewsController < ApplicationController
   protected
 
   def review_params
-    params.require(:review).permit(:body)
+    params.require(:review).permit(:body, :rating)
+  end
+
+  def authorize_user
+    if !user_signed_in? || !current_user.admin?
+      raise ActionController::RoutingError.new("Not Found")
+    end
   end
 
 end

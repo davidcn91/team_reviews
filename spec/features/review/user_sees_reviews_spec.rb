@@ -12,15 +12,18 @@ feature 'user views reviews', %Q{
   scenario 'user view list of reviews' do
     user = FactoryGirl.create(:user)
     team = FactoryGirl.create(:team, user_id: user.id)
-    review_1 = FactoryGirl.create(:review, user_id: user.id, team_id: team.id)
-    review_2 = FactoryGirl.create(:review, user_id: user.id, team_id: team.id)
-    review_3 = FactoryGirl.create(:review, user_id: user.id, team_id: team.id)
+    review_1 = FactoryGirl.create(:review, user_id: user.id, team_id: team.id, rating: 6)
+    review_2 = FactoryGirl.create(:review, user_id: user.id, team_id: team.id, rating: 3)
+    review_3 = FactoryGirl.create(:review, user_id: user.id, team_id: team.id, rating: nil)
     visit root_path
     click_link "#{team.location} #{team.name} (#{team.league})"
 
     expect(page).to have_content(review_1.body)
     expect(page).to have_content(review_2.body)
     expect(page).to have_content(review_3.body)
+    expect(page).to have_content("6")
+    expect(page).to have_content("3")
+    expect(page).to_not have_content("8")
   end
 
 end

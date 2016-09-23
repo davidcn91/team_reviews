@@ -1,4 +1,5 @@
 <h1>New Review</h1>
+<h3><%= "#{@team.location} #{@team.name} (#{@team.league})" %></h3>
 <% if flash[:alert] %>
   <div class="alert"><%= flash[:alert] %></div>
 <% end %>
