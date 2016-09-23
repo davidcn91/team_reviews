@@ -33,6 +33,7 @@ class ReviewsController < ApplicationController
   def edit
     @team = Team.find(params[:team_id])
     @review = Review.find(params[:id])
+    authorize_user(@review)
     @rating_collection = Review::RATINGS
   end
 
@@ -47,21 +48,14 @@ class ReviewsController < ApplicationController
       @review.update(vote: @review.vote -= 1)
       redirect_to team_path(@team.id) and return
     end
-    if !user_signed_in?
-      flash[:notice] = "You must be signed in to update a review."
-      redirect_to team_path(@team.id)
-    elsif current_user.id != @review.user_id
-      flash[:notice] = "You must be the creator of a review to update it."
+    authorize_user(@review)
+    @review.update(review_params)
+    if @review.save
+      flash[:notice] = "Review updated successfully!"
       redirect_to team_path(@team.id)
     else
-      @review.update(review_params)
-      if @review.save
-        flash[:notice] = "Review updated successfully!"
-        redirect_to team_path(@team.id)
-      else
-        flash[:notice] = "Review length must be 30 characters or greater."
-        redirect_to edit_team_review_path(@team.id, @review.id)
-      end
+      flash[:notice] = "Review length must be 30 characters or greater."
+      redirect_to edit_team_review_path(@team.id, @review.id)
     end
   end
 

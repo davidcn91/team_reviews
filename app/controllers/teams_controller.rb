@@ -35,27 +35,21 @@ class TeamsController < ApplicationController
 
   def edit
     @team = Team.find(params[:id])
+    authorize_user(@team)
     @league_collection = Team::LEAGUES
   end
 
   def update
     @team = Team.find(params[:id])
+    authorize_user(@team)
     @league_collection = Team::LEAGUES
-    if !user_signed_in?
-      flash[:notice] = "You must be signed in to update a team."
-      redirect_to edit_team_path(@team.id)
-    elsif current_user.id != @team.user_id
-      flash[:notice] = "You must be the creator of a team to update it."
-      redirect_to edit_team_path(@team.id)
+    @team.update(team_params)
+    if @team.save
+      flash[:notice] = "Team updated successfully!"
+      redirect_to team_path(@team.id)
     else
-      @team.update(team_params)
-      if @team.save
-        flash[:notice] = "Team updated successfully!"
-        redirect_to team_path(@team.id)
-      else
-        flash[:notice] = "Please fill out all fields."
-        redirect_to edit_team_path(@team.id)
-      end
+      flash[:notice] = "Please fill out all fields."
+      redirect_to edit_team_path(@team.id)
     end
   end
 

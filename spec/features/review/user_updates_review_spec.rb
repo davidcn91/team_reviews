@@ -13,10 +13,9 @@ feature 'user updates review', %Q{
   #   and I should be provided an error message.
   # * If I do not specify a rating, I should not receive an error
   #   and my review should still be submitted without a rating.
-  # * If I am not signed in, I should not be able to update the Review and should
-  #   be notified that I am not signed in.
+  # * If I am not signed in, I should not be able to update the Review
   # * If I am not the creator of the review, I should not be able to update the Review
-  #   and should be notified that I am not authorized to update it.
+
 
   before(:each) do
     @user = FactoryGirl.create(:user)
@@ -89,12 +88,7 @@ feature 'user updates review', %Q{
     click_link "#{@team.location} #{@team.name} (#{@team.league})"
     expect(page).to_not have_link("Edit Review")
 
-    visit edit_team_review_path(@team.id, @review.id)
-    fill_in 'Body', with: 'New Review New Review New Review New Review'
-    click_button 'Submit Review'
-
-    expect(page).to have_content("You must be signed in to update a review.")
-    expect(page).to have_content("Reviews")
+    expect{visit edit_team_review_path(@team.id, @review.id)}.to raise_error(ActionController::RoutingError)
   end
 
   scenario 'authenticated user is not the creator of the team' do
@@ -107,13 +101,7 @@ feature 'user updates review', %Q{
     click_link "#{@team.location} #{@team.name} (#{@team.league})"
 
     expect(page).to_not have_content("Edit Review")
-
-    visit edit_team_review_path(@team.id, @review.id)
-    fill_in 'Body', with: 'New Review New Review New Review New Review'
-    click_button 'Submit Review'
-
-    expect(page).to have_content("You must be the creator of a review to update it.")
-    expect(page).to have_content("Reviews")
+    expect{visit edit_team_review_path(@team.id, @review.id)}.to raise_error(ActionController::RoutingError)
   end
 
 end

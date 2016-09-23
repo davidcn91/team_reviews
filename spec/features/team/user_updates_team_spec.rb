@@ -61,15 +61,7 @@ feature 'user updates team', %Q{
     click_link "#{@team.location} #{@team.name} (#{@team.league})"
 
     expect(page).to_not have_content("Edit Team")
-
-    visit edit_team_path(@team.id)
-    fill_in 'Location', with: 'Seattle'
-    fill_in 'Name', with: 'Seahawks'
-    select 'NFL', from: 'League'
-    click_button 'Submit Team'
-
-    expect(page).to have_content("You must be signed in to update a team.")
-    expect(page).to_not have_content("Reviews")
+    expect{visit edit_team_path(@team.id)}.to raise_error(ActionController::RoutingError)
   end
 
   scenario 'authenticated user is not the creator of the team' do
@@ -82,15 +74,7 @@ feature 'user updates team', %Q{
     click_link "#{@team.location} #{@team.name} (#{@team.league})"
 
     expect(page).to_not have_content("Edit Team")
-
-    visit edit_team_path(@team.id)
-    fill_in 'Location', with: 'Seattle'
-    fill_in 'Name', with: 'Seahawks'
-    select 'NFL', from: 'League'
-    click_button 'Submit Team'
-
-    expect(page).to have_content("You must be the creator of a team to update it.")
-    expect(page).to_not have_content("Reviews")
+    expect{visit edit_team_path(@team.id)}.to raise_error(ActionController::RoutingError)
   end
 
 end
