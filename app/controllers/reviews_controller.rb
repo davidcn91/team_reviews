@@ -40,6 +40,14 @@ class ReviewsController < ApplicationController
     @team = Team.find(params[:team_id])
     @review = Review.find(params[:id])
     @rating_collection = Review::RATINGS
+    if params[:vote] == 'Like Review'
+      @review.update(vote: @review.vote += 1)
+      redirect_to team_path(@team.id) and return
+    elsif params[:vote] == 'Dislike Review'
+      @review.update(vote: @review.vote -= 1)
+      redirect_to team_path(@team.id) and return
+    end
+    binding.pry
     if !user_signed_in?
       flash[:notice] = "You must be signed in to update a review."
       redirect_to team_path(@team.id)
@@ -59,6 +67,7 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    binding.pry
     @team = Team.find(params[:team_id])
     @review = Review.find(params[:id])
     if user_signed_in? && (current_user.id == @review.user_id)
@@ -68,10 +77,14 @@ class ReviewsController < ApplicationController
     redirect_to team_path(@team.id)
   end
 
+  def vote
+    binding.pry
+  end
+
   protected
 
   def review_params
-    params.require(:review).permit(:body, :rating)
+    params.require(:review).permit(:body, :rating, :vote)
   end
 
   def authorize_user

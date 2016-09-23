@@ -20,8 +20,12 @@
         <br /><%= link_to('Edit Review', edit_team_review_path(@team.id, review.id)) %>
         <%= button_to('Delete Review', [@team, review], method: :delete) %>
       <% end %>
-      <br />
+      <p></p>
+      Review Rating: <%= review.vote %>
+      <%= button_to 'Like Review', [@team, review], method: :patch, name: 'vote', value: 'up' %>
+      <%= button_to 'Dislike Review', [@team, review], method: :patch, name: 'vote', value: 'down' %>
     </li>
+    <br />
   <% end %>
 </ul>
 
