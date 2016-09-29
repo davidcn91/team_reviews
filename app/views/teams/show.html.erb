@@ -2,7 +2,7 @@
 
 <% if (user_signed_in? && current_user.id == @team.user_id) || (user_signed_in? && current_user.admin?) %>
   <ul>
-    <li><p><%= link_to 'Edit Team', edit_team_path(@team.id) %></p></li>
+    <li><%= link_to 'Edit Team', edit_team_path(@team.id) %></li>
     <li><%= button_to 'Delete Team', @team, method: :delete %></li>
   </ul>
 <% end %>
@@ -57,6 +57,7 @@
     <br />
   <% end %>
 </ul>
+<%= paginate @reviews %>
 
 <% if user_signed_in? %>
   <p><%= link_to 'Add Review', new_team_review_path(@team.id) %></p>

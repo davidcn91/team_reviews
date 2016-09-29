@@ -2,7 +2,7 @@ require 'pry'
 class TeamsController < ApplicationController
 
   def index
-    @teams = Team.all
+    @teams = Team.order(:league).page params[:page]
   end
 
   def new
@@ -30,7 +30,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
-    @reviews = @team.reviews
+    @reviews = @team.reviews.order(created_at: :desc).page params[:page]
   end
 
   def edit

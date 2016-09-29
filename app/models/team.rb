@@ -5,4 +5,6 @@ class Team < ActiveRecord::Base
 
   belongs_to :user
   has_many :reviews, dependent: :destroy
+
+  paginates_per 20
 end

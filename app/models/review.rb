@@ -9,4 +9,6 @@ class Review < ActiveRecord::Base
   validates :body, presence: true, length: {minimum: 30}
   validates :rating, numericality:
   { allow_blank: true, only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 10 }
+
+  paginates_per 1
 end

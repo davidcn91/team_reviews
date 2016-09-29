@@ -14,6 +14,8 @@ class User < ApplicationRecord
 
   mount_uploader :profile_photo, ProfilePhotoUploader
 
+  paginates_per 20
+
   def admin?
     role == "admin"
   end
