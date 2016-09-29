@@ -12,18 +12,47 @@
 <ul>
   <% @reviews.each do |review| %>
     <li>
-      <%= review.body %>
+      <strong><%= review.body %></strong>
       <% if !review.rating.nil? %>
-        <br />Team Rating: <%= review.rating %>
+        <br />Team Rating (1-10): <%= review.rating %>
       <% end %>
       <% if (user_signed_in? && review.user_id == current_user.id) || (user_signed_in? && current_user.admin?) %>
         <br /><%= link_to('Edit Review', edit_team_review_path(@team.id, review.id)) %>
         <%= button_to('Delete Review', [@team, review], method: :delete) %>
       <% end %>
       <p></p>
-      Review Rating: <%= review.vote %>
-      <%= button_to 'Like Review', [@team, review], method: :patch, name: 'vote', value: 'up' %>
-      <%= button_to 'Dislike Review', [@team, review], method: :patch, name: 'vote', value: 'down' %>
+
+      <div class='rating'>
+        <% rating = 0 %>
+        <% review.votes.each do |vote| %>
+          <% rating += vote.score %>
+        <% end %>
+        <% if user_signed_in? %>
+          <% vote = Vote.where(user_id: current_user.id, review_id: review.id)[0] %>
+        <% end %>
+        Review Rating: <span class='vote'><%= rating %></span>
+
+        <div class='message'>
+          <% if ((user_signed_in?) && (review.votes.where(user_id: current_user.id)[0].score == 1)) %>
+            <span>You liked this review!</span>
+          <% elsif ((user_signed_in?) && (review.votes.where(user_id: current_user.id)[0].score == -1)) %>
+            <span>You disliked this review!</span>
+          <% else %>
+            <span></span>
+          <% end %>
+        </div>
+
+        <% if ((user_signed_in?) && (review.votes.where(user_id: current_user.id)[0].score != 1)) %>
+          <%= button_to 'Like Review', [@team, review], method: :patch, name: 'vote', class: 'up', id: vote.id %>
+        <% elsif user_signed_in? %>
+          <%= button_to 'Like Review', [@team, review], method: :patch, style: 'display: none;', name: 'vote', class: 'up', id: vote.id %>
+        <% end %>
+        <% if ((user_signed_in?) && (review.votes.where(user_id: current_user.id)[0].score != -1)) %>
+          <%= button_to 'Dislike Review', [@team, review], method: :patch, name: 'vote', class: 'down', id: vote.id %>
+        <% elsif user_signed_in? %>
+          <%= button_to 'Dislike Review', [@team, review], method: :patch, style: 'display: none;', name: 'vote', class: 'down', id: vote.id %>
+        <% end %>
+      </div>
     </li>
     <br />
   <% end %>

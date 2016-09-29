@@ -22,6 +22,9 @@ class ReviewsController < ApplicationController
       @review.team_id = @team.id
       if @review.save
         flash[:notice] = "Review added successfully!"
+        User.all.each do |user|
+          Vote.create(review_id: @review.id, user_id: user.id)
+        end
         redirect_to team_path(@team.id)
       else
         flash[:notice] = "Review length must be 30 characters or greater."
@@ -41,13 +44,6 @@ class ReviewsController < ApplicationController
     @team = Team.find(params[:team_id])
     @review = Review.find(params[:id])
     @rating_collection = Review::RATINGS
-    if params[:vote] == 'Like Review'
-      @review.update(vote: @review.vote += 1)
-      redirect_to team_path(@team.id) and return
-    elsif params[:vote] == 'Dislike Review'
-      @review.update(vote: @review.vote -= 1)
-      redirect_to team_path(@team.id) and return
-    end
     authorize_user(@review)
     @review.update(review_params)
     if @review.save
@@ -75,7 +71,7 @@ class ReviewsController < ApplicationController
   protected
 
   def review_params
-    params.require(:review).permit(:body, :rating, :vote)
+    params.require(:review).permit(:body, :rating)
   end
 
   def authorize_user(review)
