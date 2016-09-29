@@ -9,6 +9,7 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'selenium-webdriver'
 gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'pry-rails'
