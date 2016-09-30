@@ -19,4 +19,9 @@ class User < ApplicationRecord
   def admin?
     role == "admin"
   end
+
+  private
+  def profile_photo_size_validation
+    errors[:profile_photo] << "should be less than 500KB" if profile_photo.size > 0.5.megabytes
+  end
 end

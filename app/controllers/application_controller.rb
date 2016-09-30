@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
     end
 
     devise_parameter_sanitizer.permit(:account_update) { |u|
-      u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password)
+      u.permit(:first_name, :last_name, :email, :password, :password_confirmation,
+      :current_password, :profile_photo, :remove_profile_photo)
     }
   end
 end

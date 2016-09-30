@@ -11,6 +11,9 @@ gem 'selenium-webdriver'
 gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 gem 'dotenv-rails'
 gem 'kaminari'
+gem 'mini_magick'
+gem 'fog'
+
 
 group :development, :test do
   gem 'pry-rails'

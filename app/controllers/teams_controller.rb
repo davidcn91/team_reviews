@@ -2,7 +2,7 @@ require 'pry'
 class TeamsController < ApplicationController
 
   def index
-    @teams = Team.order(:league).page params[:page]
+    @teams = Team.search(params[:search]).page params[:page]
   end
 
   def new
@@ -30,7 +30,8 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
-    @reviews = @team.reviews.order(created_at: :desc).page params[:page]
+    @reviews = @team.reviews.search(params[:search]).page params[:page]
+    # order(created_at: :desc)
   end
 
   def edit
@@ -63,11 +64,7 @@ class TeamsController < ApplicationController
 
   protected
   def team_params
-    params.require(:team).permit(
-      :location,
-      :name,
-      :league,
-    )
+    params.require(:team).permit(:location, :name, :league, :search)
   end
 
   def authorize_user(team)

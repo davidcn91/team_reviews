@@ -1,0 +1,4 @@
+it:
+  errors:
+    messages:
+      mini_magick_processing_error: "some error message in your language"

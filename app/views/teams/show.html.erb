@@ -9,6 +9,11 @@
 
 <h3>Reviews</h3>
 
+<%= form_tag(team_path(@team.id), method: 'get', id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Reviews" %>
+  <%= submit_tag "Search", name: nil %>
+<% end %>
+
 <ul>
   <% @reviews.each do |review| %>
     <li>

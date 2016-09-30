@@ -26,4 +26,5 @@ class MembersController < Devise::RegistrationsController
       respond_with resource
     end
   end
+
 end

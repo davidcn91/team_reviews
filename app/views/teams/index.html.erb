@@ -1,5 +1,10 @@
 <h1>Professional Sports Team Reviews</h1>
 
+<%= form_tag(teams_path, method: 'get', id: "teams-search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Teams" %>
+  <%= submit_tag "Search", name: nil %>
+<% end %>
+
 <h3>Teams</h3>
 
 <ul>
