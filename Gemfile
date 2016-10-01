@@ -13,6 +13,8 @@ gem 'dotenv-rails'
 gem 'kaminari'
 gem 'mini_magick'
 gem 'fog'
+gem 'actionmailer', '~> 5.0', '>= 5.0.0.1'
+gem 'figaro'
 
 
 group :development, :test do

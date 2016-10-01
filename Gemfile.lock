@@ -82,6 +82,8 @@ GEM
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
     ffi (1.9.14)
+    figaro (1.1.1)
+      thor (~> 0.14)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.38.0)
@@ -363,11 +365,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionmailer (~> 5.0, >= 5.0.0.1)
   capybara
   carrierwave (>= 1.0.0.beta, < 2.0)
   devise
   dotenv-rails
   factory_girl_rails
+  figaro
   fog
   foundation-rails
   jquery-rails
