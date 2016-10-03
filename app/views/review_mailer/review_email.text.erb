@@ -1,0 +1,12 @@
+<%= @user.first_name %>, you have received a new review!
+===============================================
+
+Your team, <%= @team.location %> <%= @team.name %>, has a new review.
+
+<%= @review.body %>
+
+<% if !@review.rating.nil? %>
+  Team Rating: <%= @review.rating %>
+<% end %>
+
+Have a great day!

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @user.first_name %>, you have received a new review!</h1>
+    <p>
+      Your team, <%= @team.location %> <%= @team.name %>, has a new review.<br>
+    </p>
+    <p>
+      <%= @review.body %>
+    </p>
+    <% if !@review.rating.nil? %>
+      <p>Team Rating: <%= @review.rating %></p>
+    <% end %>
+    <p>Have a great day!</p>
+  </body>
+</html>

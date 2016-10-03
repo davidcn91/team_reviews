@@ -41,7 +41,7 @@ feature 'user creates team', %Q{
     select 'NFL', from: 'League'
     click_button 'Submit Team'
     expect(page).to have_content("You must be signed in to add a team.")
-    expect(page).to_not have_content("Home")
+    expect(page).to_not have_content("Professional Sports Team Reviews")
   end
 
   scenario 'authenticated user supplies invalid information' do
@@ -57,7 +57,7 @@ feature 'user creates team', %Q{
     select 'NFL', from: 'League'
     click_button 'Submit Team'
     expect(page).to have_content("Please fill out all fields.")
-    expect(page).to_not have_content("Home")
+    expect(page).to_not have_content("Professional Sports Team Reviews")
   end
 
 end

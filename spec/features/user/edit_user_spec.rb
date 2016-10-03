@@ -37,7 +37,7 @@ feature 'user edits account' , %Q{
     fill_in 'Current Password', with: ('newpassword')
     click_button 'Update'
 
-    expect(page).to have_content('Home')
+    expect(page).to have_content('Professional Sports Team Reviews')
   end
 
   scenario 'required information is not supplied' do

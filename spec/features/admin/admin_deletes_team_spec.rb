@@ -23,7 +23,6 @@ feature 'admin deletes team', %Q{
     click_link "#{team.location} #{team.name} (#{team.league})"
 
     click_button 'Delete Team'
-    expect(page).to have_content("Home")
     expect(page).to_not have_content(team.location)
     expect(page).to_not have_content(team.name)
     expect(page).to_not have_content(team.league)

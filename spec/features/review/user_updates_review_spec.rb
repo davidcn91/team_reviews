@@ -29,7 +29,7 @@ feature 'user updates review', %Q{
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: @user.password
     click_button 'Sign In'
-    expect(page).to have_content("Home")
+    expect(page).to have_content("Professional Sports Team Reviews")
     click_link "#{@team.location} #{@team.name} (#{@team.league})"
 
     click_link "Edit Review"
@@ -50,7 +50,7 @@ feature 'user updates review', %Q{
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: @user.password
     click_button 'Sign In'
-    expect(page).to have_content("Home")
+    expect(page).to have_content("Professional Sports Team Reviews")
     click_link "#{@team.location} #{@team.name} (#{@team.league})"
 
     click_link "Edit Review"
@@ -71,7 +71,7 @@ feature 'user updates review', %Q{
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: @user.password
     click_button 'Sign In'
-    expect(page).to have_content("Home")
+    expect(page).to have_content("Professional Sports Team Reviews")
     click_link "#{@team.location} #{@team.name} (#{@team.league})"
 
     click_link "Edit Review"
