@@ -20,7 +20,8 @@ feature 'user views teams', %Q{
   end
 
   scenario 'user clicks on team link' do
-    team = FactoryGirl.create(:team)
+    user = FactoryGirl.create(:user)
+    team = FactoryGirl.create(:team, user_id: user.id)
     visit root_path
     click_link "#{team.location} #{team.name} (#{team.league})"
 

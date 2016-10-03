@@ -21,6 +21,7 @@ feature 'user updates review', %Q{
     @user = FactoryGirl.create(:user)
     @team = FactoryGirl.create(:team, user_id: @user.id)
     @review = FactoryGirl.create(:review, user_id: @user.id, team_id: @team.id)
+    Vote.create(user_id: @user.id, review_id: @review.id)
   end
 
   scenario 'creator supplies valid information' do
@@ -93,6 +94,7 @@ feature 'user updates review', %Q{
 
   scenario 'authenticated user is not the creator of the team' do
     user_2 = FactoryGirl.create(:user)
+    Vote.create(user_id: user_2.id, review_id: @review.id)
     visit root_path
     click_link 'Sign In'
     fill_in 'Email', with: user_2.email

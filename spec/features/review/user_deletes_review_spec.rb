@@ -16,6 +16,7 @@ feature 'user deletes review', %Q{
     @user = FactoryGirl.create(:user)
     @team = FactoryGirl.create(:team, user_id: @user.id)
     @review = FactoryGirl.create(:review, user_id: @user.id, team_id: @team.id)
+    Vote.create(user_id: @user.id, review_id: @review.id)
   end
 
   scenario 'signed in user is the creator of the review' do
@@ -42,6 +43,7 @@ feature 'user deletes review', %Q{
 
   scenario 'signed in user is not creator of the team' do
     user_2 = FactoryGirl.create(:user)
+    Vote.create(user_id: user_2.id, review_id: @review.id)
     visit root_path
     click_link 'Sign In'
     fill_in 'Email', with: user_2.email

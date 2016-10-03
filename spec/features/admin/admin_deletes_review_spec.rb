@@ -11,16 +11,19 @@ feature 'admin deletes review', %Q{
   #   reviews index page.
   # * If I am not an admin, I should not be able to delete a review.
 
-  scenario 'admin deletes a user' do
+  scenario 'admin deletes a review' do
     user = FactoryGirl.create(:user, role: 'admin')
     user_2 = FactoryGirl.create(:user)
     team = FactoryGirl.create(:team, user_id: user_2.id)
     review = FactoryGirl.create(:review, user_id: user_2.id, team_id: team.id)
+    Vote.create(user_id: user.id, review_id: review.id)
+    Vote.create(user_id: user_2.id, review_id: review.id)
     visit root_path
     click_link 'Sign In'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Sign In'
+    expect(page).to have_content("Professional")
     click_link "#{team.location} #{team.name} (#{team.league})"
 
     click_button 'Delete Review'

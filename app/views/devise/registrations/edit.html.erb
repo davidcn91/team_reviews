@@ -41,10 +41,10 @@
     <% if current_user.profile_photo.url.present? %>
       </br><%= image_tag current_user.profile_photo.url, size: "70x50" %>
       <br /><%= f.label :remove_profile_photo, "Remove Profile Photo" %>
-      <%= f.check_box :remove_profile_photo %>
+      <%= f.check_box :remove_profile_photo, id: "remove_profile_photo" %>
 
     <% end %>
-    <br /><%= f.file_field :profile_photo %>
+    <br /><%= f.file_field :profile_photo, id: "profile_photo" %>
     <%= f.hidden_field :profile_photo_cache %>
   </div>
 

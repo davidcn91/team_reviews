@@ -15,6 +15,9 @@ feature 'user views reviews', %Q{
     review_1 = FactoryGirl.create(:review, user_id: user.id, team_id: team.id, rating: 6)
     review_2 = FactoryGirl.create(:review, user_id: user.id, team_id: team.id, rating: 3)
     review_3 = FactoryGirl.create(:review, user_id: user.id, team_id: team.id, rating: nil)
+    Vote.create(user_id: user.id, review_id: review_1.id)
+    Vote.create(user_id: user.id, review_id: review_2.id)
+    Vote.create(user_id: user.id, review_id: review_3.id)
     visit root_path
     click_link "#{team.location} #{team.name} (#{team.league})"
 

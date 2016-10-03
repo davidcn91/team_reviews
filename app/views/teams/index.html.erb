@@ -7,7 +7,7 @@
 
 <h3>Teams</h3>
 
-<ul>
+<ul id="teams">
   <% @teams.each do |team| %>
     <li><%= link_to "#{team.location} #{team.name} (#{team.league})", team_path(team.id) %></li>
   <% end %>
