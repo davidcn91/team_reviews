@@ -8,9 +8,9 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
   validates :email, uniqueness: true
 
-  has_many :teams
-  has_many :reviews
-  has_many :votes
+  has_many :teams, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :votes, dependent: :destroy
 
   mount_uploader :profile_photo, ProfilePhotoUploader
 

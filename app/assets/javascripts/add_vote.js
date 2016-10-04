@@ -12,6 +12,9 @@ var addVote = function(likeOrDislike, button) {
   });
 
   request.done(function() {
+    if (rating > 0) {
+      rating = "+" + rating;
+    }
     $(count)[0].innerHTML=(rating)
     if (message.textContent == "") {
       $(button).hide();

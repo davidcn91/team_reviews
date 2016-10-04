@@ -3,6 +3,23 @@ body {
   background-color: #ccffff;
 }
 
-nav li:nth-child(3) {
+nav li {
   list-style-type: none;
+  text-align: right;
+}
+
+nav:first-child {
+  position: absolute;
+  right: 20px;
+}
+
+.review {
+  border-bottom-style: solid;
+  border-bottom-color: black;
+}
+
+.review_body {
+  border-bottom-style: dotted;
+  border-bottom-color: black;
+  border-bottom-width: thin;
 }
