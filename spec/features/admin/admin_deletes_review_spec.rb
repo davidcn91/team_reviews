@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 feature 'admin deletes review', %Q{
   As an admin

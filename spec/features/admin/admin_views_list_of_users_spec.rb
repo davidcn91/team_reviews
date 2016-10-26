@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 feature 'admin views list of users', %Q{
   As an admin

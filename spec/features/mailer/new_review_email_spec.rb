@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 feature 'user receives email when team is reviewed', %Q{
   As a user who created a team

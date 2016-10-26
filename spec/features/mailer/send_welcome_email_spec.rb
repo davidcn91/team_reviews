@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 feature 'new user receives welcome email', %Q{
   As a user who signs up

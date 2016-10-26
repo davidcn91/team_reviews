@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 feature 'user searches for review', %Q{
   As a user

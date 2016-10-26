@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 feature 'user deletes review', %Q{
   As an authenticated user

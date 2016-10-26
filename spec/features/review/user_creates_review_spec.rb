@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 feature 'user creates review', %Q{
   As an authenticated user

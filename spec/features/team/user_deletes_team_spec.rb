@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 feature 'user deletes team', %Q{
   As an authenticated user

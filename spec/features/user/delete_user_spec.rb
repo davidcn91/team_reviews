@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 Capybara.default_driver = :selenium
 
 feature 'user edits account' , %Q{

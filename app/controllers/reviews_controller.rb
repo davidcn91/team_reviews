@@ -1,4 +1,3 @@
-require 'pry'
 class ReviewsController < ApplicationController
 
   def index
@@ -66,7 +65,6 @@ class ReviewsController < ApplicationController
   end
 
   def vote
-    binding.pry
   end
 
   protected

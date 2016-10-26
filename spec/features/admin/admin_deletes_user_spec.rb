@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 feature 'admin deletes user', %Q{
   As an admin
