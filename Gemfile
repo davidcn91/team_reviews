@@ -26,6 +26,7 @@ group :development, :test do
   gem 'listen', '~> 3.0.5'
   gem 'valid_attribute'
   gem 'shoulda-matchers', require: false
+  gem 'webrick', '~> 1.3', '>= 1.3.1'
 end
 
 group :test do
@@ -34,5 +35,4 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'puma'
 end
