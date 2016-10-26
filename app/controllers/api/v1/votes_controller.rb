@@ -1,3 +1,4 @@
+require 'pry'
 class Api::V1::VotesController < Api::V1::ApiController
 
   def index
@@ -15,7 +16,7 @@ class Api::V1::VotesController < Api::V1::ApiController
 
   def update
     vote = Vote.find(params[:id])
-    if params[:up_or_down] == "up"
+    if params[:vote] == "up"
       vote.update(score: (vote.score + 1))
     else
       vote.update(score: (vote.score - 1))
@@ -24,8 +25,8 @@ class Api::V1::VotesController < Api::V1::ApiController
 
   private
 
-  def vote_params
-    params.require(:vote).permit(:score, :user_id, :review_id)
+  def review_params
+    params.require(:vote).permit(:body, :user_id, :review_id, :rating, :vote)
   end
 
 

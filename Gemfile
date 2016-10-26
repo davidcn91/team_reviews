@@ -1,6 +1,5 @@
 source 'https://rubygems.org/'
 
-ruby '2.2.5'
 gem 'rails', '~> 5.0.0'
 gem 'pg', '~> 0.18'
 gem 'sass-rails', '~> 5.0'
@@ -26,7 +25,6 @@ group :development, :test do
   gem 'listen', '~> 3.0.5'
   gem 'valid_attribute'
   gem 'shoulda-matchers', require: false
-  gem 'webrick', '~> 1.3', '>= 1.3.1'
 end
 
 group :test do

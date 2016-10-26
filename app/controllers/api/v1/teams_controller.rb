@@ -1,3 +1,4 @@
+require 'pry'
 class Api::V1::TeamsController < Api::V1::ApiController
 
   def index

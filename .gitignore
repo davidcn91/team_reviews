@@ -19,7 +19,7 @@
 # Ignore uploaded files in test/development
 /public/uploads
 
-/.env
+.env
 
 # Ignore application configuration
 /config/application.yml
