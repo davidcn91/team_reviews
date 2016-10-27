@@ -374,7 +374,7 @@ DEPENDENCIES
   figaro
   fog
   foundation-rails
-  jquery-rails
+  jquery-rails (~> 4.2, >= 4.2.1)
   kaminari
   launchy
   listen (~> 3.0.5)
