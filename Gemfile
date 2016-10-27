@@ -17,6 +17,9 @@ gem 'fog'
 gem 'actionmailer', '~> 5.0', '>= 5.0.0.1'
 gem 'figaro'
 gem 'bundler', '~> 1.11', '>= 1.11.2'
+gem 'listen', '~> 3.0.5'
+gem 'valid_attribute'
+gem 'shoulda-matchers', require: false
 
 
 group :development, :test do
@@ -24,9 +27,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
-  gem 'listen', '~> 3.0.5'
-  gem 'valid_attribute'
-  gem 'shoulda-matchers', require: false
 end
 
 group :test do
