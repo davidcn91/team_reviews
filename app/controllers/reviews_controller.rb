@@ -1,8 +1,5 @@
 class ReviewsController < ApplicationController
 
-  def index
-  end
-
   def new
     @team = Team.find(params[:team_id])
     @review = Review.new
