@@ -16,6 +16,7 @@ gem 'mini_magick'
 gem 'fog'
 gem 'actionmailer', '~> 5.0', '>= 5.0.0.1'
 gem 'figaro'
+gem 'bundler', '~> 1.11', '>= 1.11.2'
 
 
 group :development, :test do
