@@ -1,7 +1,6 @@
-require 'pry'
 class UsersController < ApplicationController
 
-  # before_action :authorize_user
+  before_action :authorize_user
 
   def index
     @users = User.order(:first_name).page params[:page]

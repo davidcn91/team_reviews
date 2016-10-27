@@ -1,4 +1,3 @@
-require 'pry'
 class ReviewsController < ApplicationController
 
   def index
@@ -63,10 +62,6 @@ class ReviewsController < ApplicationController
     @review.destroy
     flash[:notice] = "Review deleted successfully."
     redirect_to team_path(@team.id)
-  end
-
-  def vote
-    binding.pry
   end
 
   protected

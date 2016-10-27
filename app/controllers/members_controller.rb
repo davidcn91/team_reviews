@@ -1,4 +1,3 @@
-require 'pry'
 class MembersController < Devise::RegistrationsController
 
   def create
