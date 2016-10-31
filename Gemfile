@@ -27,7 +27,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
-  gem 'webrick', '~> 1.3', '>= 1.3.1'
 end
 
 group :test do
@@ -36,5 +35,4 @@ end
 
 group :production  do
   gem 'rails_12factor'
-  gem 'puma'
 end
