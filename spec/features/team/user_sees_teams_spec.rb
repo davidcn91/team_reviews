@@ -2,12 +2,8 @@ require 'rails_helper'
 
 feature 'user views teams', %Q{
   As a user
-  I want to view a list of items
-  So that I can pick items to review
-
-  As a user
-  I want to view the details about an item
-  So that I can get more information about it
+  I want to view a list of teams
+  So that I can pick a team to review
 } do
 
   # * I should be able to view a list of teams from the root index.
