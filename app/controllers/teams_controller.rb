@@ -30,7 +30,6 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
     @reviews = @team.reviews.search(params[:search]).page params[:page]
-    # order(created_at: :desc)
   end
 
   def edit
