@@ -63,7 +63,7 @@ Rails.application.configure do
     :user_name      => ENV['user_name'],
     :password       => ENV['password'],
     :domain         => ENV['domain'],
-    :authentication => :plain,
+    :authentication => :plain
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
