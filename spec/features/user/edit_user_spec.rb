@@ -1,4 +1,5 @@
 require 'rails_helper'
+Capybara.default_driver = :rack_test
 
 feature 'user edits account' , %Q{
   As an authenticated user
