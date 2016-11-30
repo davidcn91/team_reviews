@@ -58,10 +58,10 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :port           => 587,
-    :address        => 'smtp.mailgun.org',
-    :user_name      => 'postmaster@app2500509400d2429287dbd14996c59057.mailgun.org',
-    :password       => '474f5b0b6704eb51ca5ebfb19215a52a',
+    :port           => ENV['MAILGUN_SMTP_PORT'],
+    :address        => ENV['MAILGUN_SMTP_SERVER'],
+    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
     :domain         => 'team-review-app.herokuapp.com',
     :authentication => :plain,
   }
