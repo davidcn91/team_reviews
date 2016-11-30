@@ -1,5 +1,5 @@
 class ReviewMailer < ApplicationMailer
-  default from: "\"David's Site\" <no-reply@example.com>"
+  default from: "davidcnelson9491@gmail.com"
 
   def review_email(user, team, review)
     @user = user
