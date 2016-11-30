@@ -60,10 +60,10 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :port           => 587,
     :address        => 'smtp.mailgun.org',
-    :user_name      => ENV['user_name'],
-    :password       => ENV['password'],
-    :domain         => ENV['domain'],
-    :authentication => :plain
+    :user_name      => 'postmaster@app2500509400d2429287dbd14996c59057.mailgun.org',
+    :password       => '474f5b0b6704eb51ca5ebfb19215a52a',
+    :domain         => 'team-review-app.herokuapp.com',
+    :authentication => :plain,
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
