@@ -58,7 +58,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :port           => ENV['587'],
+    :port           => ENV[587],
     :address        => ENV['smtp.mailgun.org'],
     :user_name      => ENV['postmaster@app2500509400d2429287dbd14996c59057.mailgun.org'],
     :password       => ENV['474f5b0b6704eb51ca5ebfb19215a52a'],
