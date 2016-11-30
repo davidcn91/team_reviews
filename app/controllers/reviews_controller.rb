@@ -22,6 +22,7 @@ class ReviewsController < ApplicationController
           Vote.create(review_id: @review.id, user_id: user.id)
         end
         redirect_to team_path(@team.id)
+        ReviewMailer.review_email(@team.user, @team, @review).deliver
       else
         flash[:notice] = "Review length must be 30 characters or greater."
         render :new
