@@ -63,7 +63,7 @@ Rails.application.configure do
     :user_name      => 'postmaster@app2500509400d2429287dbd14996c59057.mailgun.org',
     :password       => '474f5b0b6704eb51ca5ebfb19215a52a',
     :domain         => 'team-review-app.herokuapp.com',
-    :authentication => :plain
+    :authentication => :plain,
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
