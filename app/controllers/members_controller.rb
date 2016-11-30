@@ -20,6 +20,7 @@ class MembersController < Devise::RegistrationsController
         Vote.create(review_id: review.id, user_id: user.id)
       end
       @user = User.where(email: params[:user][:email])[0]
+      UserMailer.welcome_email(@user).deliver
     else
       clean_up_passwords resource
       set_minimum_password_length
