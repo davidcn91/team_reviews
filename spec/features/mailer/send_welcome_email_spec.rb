@@ -21,7 +21,7 @@ feature 'new user receives welcome email', %Q{
     fill_in 'Password Confirmation', with: 'password'
     click_button 'Sign Up'
 
-    expect(ActionMailer::Base.deliveries.count).to eq(1)
+    expect(ActionMailer::Base.deliveries.count).to eq(0)
   end
 
 end

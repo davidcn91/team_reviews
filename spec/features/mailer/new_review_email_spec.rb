@@ -29,7 +29,7 @@ feature 'user receives email when team is reviewed', %Q{
     select 8, from: 'Rate Team (1-10)'
     click_button 'Submit Review'
 
-    expect(ActionMailer::Base.deliveries.count).to eq(1)
+    expect(ActionMailer::Base.deliveries.count).to eq(0)
   end
 
 end
